@@ -1,6 +1,4 @@
-package com.ajoshow.justpass.controller;
-
-import java.util.ArrayList;
+package com.ajoshow.justpass.pass;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,15 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.ajoshow.justpass.domain.Employee;
-import com.ajoshow.justpass.service.EmployeeService;
+import com.ajoshow.justpass.pass.domain.Pass;
 
 @Controller
 @ComponentScan
-public class EmployeeController {
+public class PassController {
  
     @Autowired
-    EmployeeService employeeServiceInterface;
+    PassService employeeServiceInterface;
  
     @RequestMapping(value = {"/","/savepage"}, method = RequestMethod.GET)
     public String savePage(Model model) {
@@ -30,7 +27,7 @@ public class EmployeeController {
     }
  
     @RequestMapping(value = {"/employee/save"}, method = RequestMethod.POST)
-    public String saveEmployee(@ModelAttribute("employee") Employee employee,
+    public String saveEmployee(@ModelAttribute("employee") Pass employee,
             final RedirectAttributes redirectAttributes) {
  
 //        if(employeeServiceInterface.saveEmployee(employee)!=null) {
@@ -66,7 +63,7 @@ public class EmployeeController {
     }
  
     @RequestMapping(value = "/employee/update", method = RequestMethod.POST)
-    public String updateEmployee(@ModelAttribute("editEmployee") Employee editEmployee,
+    public String updateEmployee(@ModelAttribute("editEmployee") Pass editEmployee,
             final RedirectAttributes redirectAttributes) {
 //        if(employeeServiceInterface.editEmployee(editEmployee)!=null) {
 //            redirectAttributes.addFlashAttribute("edit", "success");
