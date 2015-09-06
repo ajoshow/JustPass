@@ -14,7 +14,7 @@ public enum PassKeyType {
 	Location,
 	Barcode,
 	StandardField,
-	DataStyle,
+	DateStyle,
 	NumberStyle
 	;
 	
