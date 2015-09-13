@@ -3,12 +3,19 @@ package com.ajoshow.justpass.pass.domain;
 import static com.ajoshow.justpass.pass.domain.PassKeyType.AssociatedApp;
 import static com.ajoshow.justpass.pass.domain.PassKeyType.CompanionApp;
 import static com.ajoshow.justpass.pass.domain.PassKeyType.Expiration;
-import static com.ajoshow.justpass.pass.domain.PassKeyType.*;
+import static com.ajoshow.justpass.pass.domain.PassKeyType.Relevance;
+import static com.ajoshow.justpass.pass.domain.PassKeyType.Standard;
+import static com.ajoshow.justpass.pass.domain.PassKeyType.VisualAppearance;
+import static com.ajoshow.justpass.pass.domain.PassKeyType.WebService;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 
@@ -22,7 +29,10 @@ import com.ajoshow.justpass.validation.constraints.RGBtriple;
 
 @Entity
 @Table(name = "pass")
-public class Pass extends ArchivableEntity {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "pass_style")
+@MappedSuperclass
+public abstract class Pass extends ArchivableEntity {
 	private static final long serialVersionUID = -6161422537951284548L;
 
 	/**
