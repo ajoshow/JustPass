@@ -1,5 +1,6 @@
 package com.ajoshow.justpass.pass.domain;
 
+import static com.ajoshow.justpass.pass.domain.PassKeyType.ApplePay;
 import static com.ajoshow.justpass.pass.domain.PassKeyType.AssociatedApp;
 import static com.ajoshow.justpass.pass.domain.PassKeyType.CompanionApp;
 import static com.ajoshow.justpass.pass.domain.PassKeyType.Expiration;
@@ -167,6 +168,15 @@ public abstract class Pass extends ArchivableEntity {
 	private Barcode barcode;
 
 	/**
+	 * Information specific to the pass’s barcode. The system uses the first
+	 * valid barcode dictionary in the array. Additional dictionaries can be
+	 * added as fall backs. only available in iOS 9.0 and later.
+	 * 
+	 */
+	@TopLevelKey(VisualAppearance)
+	private List<Barcode> barcodes;
+
+	/**
 	 * Background color of the pass, specified as an CSS-style RGB triple. For
 	 * example, rgb(23, 187, 82).
 	 */
@@ -239,4 +249,10 @@ public abstract class Pass extends ArchivableEntity {
 	 */
 	@TopLevelKey(WebService)
 	private String webServiceURL;
+
+	/**
+	 * Information used for Value Added Service Protocol transactions.
+	 */
+	@TopLevelKey(ApplePay)
+	private NFC nfc;
 }
